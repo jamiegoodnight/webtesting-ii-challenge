@@ -19,10 +19,54 @@ class Dashboard extends Component {
       </div>
     );
   }
-  strike = e => {};
-  ball = e => {};
-  foul = e => {};
-  hit = e => {};
+  strike = e => {
+    if (this.state.strikes < 3) {
+      this.setState({
+        ...state,
+        strikes: this.state.strikes + 1
+      });
+    } else {
+      this.setState({
+        ...state,
+        strikes: 0,
+        balls: 0
+      });
+    }
+  };
+  ball = e => {
+    if (this.state.balls < 4) {
+      this.setState({
+        ...state,
+        balls: this.state.balls + 1
+      });
+    } else {
+      this.setState({
+        ...state,
+        strikes: 0,
+        balls: 0
+      });
+    }
+  };
+  foul = e => {
+    if (this.state.strikes === 0 || 1) {
+      this.setState({
+        ...state,
+        strikes: this.state.strikes + 1,
+        fouls: this.state.fouls + 1
+      });
+    } else {
+      this.setState({
+        ...state,
+        fouls: this.state.fouls + 1
+      });
+    }
+  };
+  hit = e => {
+    this.setState({
+      ...state,
+      hits: this.state.hits + 1
+    });
+  };
 }
 
 export default Dashboard;
