@@ -19,6 +19,24 @@ describe("<App />", () => {
     const { getByText } = render(<App />);
     getByText(/BASEBALL/);
   });
+  it("renders numbers of hits after hit function is fired", () => {
+    const { getByText } = render(<App />);
+    const button = getByText(/HIT/);
+    fireEvent.click(button);
+    getByText(/Hits: 1/);
+  });
+  it("renders numbers of strikes after strike function is fired", () => {
+    const { getByText } = render(<App />);
+    const button = getByText(/STRIKE/);
+    fireEvent.click(button);
+    getByText(/Strikes: 1/);
+  });
+  it("renders numbers of fouls after foul function is fired", () => {
+    const { getByText } = render(<App />);
+    const button = getByText(/FOUL/);
+    fireEvent.click(button);
+    getByText(/Fouls: 1/);
+  });
 });
 
 describe("<Dashboard />", () => {
@@ -33,18 +51,6 @@ describe("<Dashboard />", () => {
     const { getByText } = render(<Dashboard />);
     const button = getByText(/HIT/);
     fireEvent.click(button);
-  });
-  it("fires hit function", () => {
-    const { getByText } = render(<Dashboard />);
-    const button = getByText(/HIT/);
-    fireEvent.click(button);
-  });
-  it("fires hit function", () => {
-    const { state, getByText } = render(<Dashboard />);
-    const hits = this.state.hits;
-    const button = getByText(/HIT/);
-    fireEvent.click(button);
-    expect(hits).toBe(1);
   });
 });
 
