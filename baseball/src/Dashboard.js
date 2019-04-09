@@ -11,23 +11,28 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="Dashboard">
-        <button onClick={this.strike} />
-        <button onClick={this.ball} />
-        <button onClick={this.foul} />
-        <button onClick={this.hit} />
-        <Display state={this.state} />
+        <button onClick={this.strike}> STRIKE </button>
+        <button onClick={this.ball}> BALL </button>
+        <button onClick={this.foul}> FOUL </button>
+        <button onClick={this.hit}> HIT </button>
+        <Display
+          balls={this.state.balls}
+          fouls={this.state.fouls}
+          hits={this.state.hits}
+          strikes={this.state.strikes}
+        />
       </div>
     );
   }
   strike = e => {
     if (this.state.strikes < 3) {
       this.setState({
-        ...state,
+        ...this.state,
         strikes: this.state.strikes + 1
       });
     } else {
       this.setState({
-        ...state,
+        ...this.state,
         strikes: 0,
         balls: 0
       });
@@ -36,34 +41,34 @@ class Dashboard extends Component {
   ball = e => {
     if (this.state.balls < 4) {
       this.setState({
-        ...state,
+        ...this.state,
         balls: this.state.balls + 1
       });
     } else {
       this.setState({
-        ...state,
+        ...this.state,
         strikes: 0,
         balls: 0
       });
     }
   };
   foul = e => {
-    if (this.state.strikes === 0 || 1) {
+    if (this.state.strikes === 0 || this.state.strikes === 1) {
       this.setState({
-        ...state,
+        ...this.state,
         strikes: this.state.strikes + 1,
         fouls: this.state.fouls + 1
       });
     } else {
       this.setState({
-        ...state,
+        ...this.state,
         fouls: this.state.fouls + 1
       });
     }
   };
   hit = e => {
     this.setState({
-      ...state,
+      ...this.state,
       hits: this.state.hits + 1
     });
   };
